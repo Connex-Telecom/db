@@ -47,7 +47,7 @@ public class ItemsController {
 		}
 	}
 	
-	
+	 
 	@GetMapping("/items")
 	public ResponseEntity<List<Item>> getAllItems() {
 		try {
