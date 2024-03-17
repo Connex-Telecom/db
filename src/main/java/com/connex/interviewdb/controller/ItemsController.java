@@ -81,7 +81,7 @@ public class ItemsController {
 	   */
 	  
 	  /**
-	   * TODO 1 Implement Delete  
+	   * TODO 2 Implement Delete  
 	   * @DeleteMapping("/items/{id}")
 	   */
 
