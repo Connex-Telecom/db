@@ -2,6 +2,7 @@ package com.connex.interviewdb.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -9,7 +10,9 @@ import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +49,7 @@ public class ItemsController {
 	
 	
 	@GetMapping("/items")
-	public ResponseEntity<List<Item>> getAllItems(@RequestParam(required = false) String title) {
+	public ResponseEntity<List<Item>> getAllItems() {
 		try {
 			List<Item> items = new ArrayList<Item>();
 
@@ -62,7 +65,7 @@ public class ItemsController {
 	
 	
 	  @PostMapping("/items")
-	  public ResponseEntity<Item> createTutorial(@RequestBody Item item) {
+	  public ResponseEntity<Item> createItem(@RequestBody Item item) {
 	    try {
 	    	Item item_t = itemRepository.save(item);
 	      return new ResponseEntity<>(item_t, HttpStatus.CREATED);
@@ -70,4 +73,42 @@ public class ItemsController {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
+	 
+	  
+	  /**
+	   * TODO 1 Implement Update  
+	   * @PutMapping("/items/{id}")
+	   */
+	  
+	  /**
+	   * TODO 1 Implement Delete  
+	   * @DeleteMapping("/items/{id}")
+	   */
+
+
+	  
+	  /**
+	   * TODO 3: Add the Search Functionality
+	   * 
+	   * Objective:
+	   * update the @GetMapping("/items") implementation to add search for items by their name. The method should handle requests to the "/items" endpoint, 
+	   * allowing users to search for items either by specifying a name or not. When a name is provided in the request, 
+	   * the method should return items whose names contain the specified string, ignoring case sensitivity. If no name is provided, 
+	   * the method should return all items.
+	   * Example Usage:
+	   * 
+	   * To call the implemented endpoint, you can use HTTP GET requests. Here are two examples on how to do it:
+	   * 
+	   * 1. To retrieve all items without filtering by name:
+	   *    GET /api/items
+	   *    This request does not include the 'name' parameter and thus should return all available items.
+	   * 
+	   * 2. To search for items by name:
+	   *    GET /api/items?name=apple
+	   *    This request includes the 'name' parameter with the value 'apple'. The method should return items whose names contain 'apple', 
+	   *    ignoring case sensitivity. For example, it should return items named 'Red Apple', 'Green Apple', etc.
+	   * 
+	   */
+
+
 }
